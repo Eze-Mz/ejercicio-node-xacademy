@@ -1,2 +1,4 @@
 const libraryService = require("./library.service");
-module.exports = { libraryService };
+const bookService = require("./book.service");
+
+module.exports = { libraryService, bookService };

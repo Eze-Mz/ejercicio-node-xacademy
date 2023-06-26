@@ -29,14 +29,14 @@ const getLibraryById = async (req, res) => {
 
 const updateLibrary = async (req, res) => {
 	try {
-		const library = await libraryService.updateLibrary(
+		const response = await libraryService.updateLibrary(
 			req.body,
 			req.params.libraryId,
 		);
-		if (typeof library === "string") {
-			res.status(404).json(library);
+		if (typeof response === "string") {
+			res.status(404).json(response);
 		} else {
-			res.json(library);
+			res.json(response);
 		}
 	} catch (error) {
 		res.status(500).json({ action: "updateLibrary", error: error.message });

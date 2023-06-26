@@ -1,19 +1,18 @@
 const express = require("express");
-const { initializeDB } = require("./db-config")
-const { bookRouter, libraryRouter, userRouter } = require("./routes")
+const { initializeDB } = require("./db-config");
+const { bookRouter, libraryRouter, userRouter } = require("./routes");
 
 const PORT = 8000;
 
-const app = express()
+const app = express();
 
 //Middlewares
-app.use(express.json())
+app.use(express.json());
 
 app.use("/library", libraryRouter);
-
-
+app.use("/book", bookRouter);
 
 app.listen(PORT, async () => {
-    await initializeDB();
-    console.log(`server is running on port ${PORT}`);
-})
+	await initializeDB();
+	console.log(`server is running on port ${PORT}`);
+});
