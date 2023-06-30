@@ -20,16 +20,6 @@ const getUsers = async () => {
 	}
 };
 
-const getUserById = async (id) => {
-	try {
-		const user = await User.findByPk(id);
-		return user;
-	} catch (error) {
-		console.error(`Error al buscar el usuario con id ${id}`, error);
-		throw error;
-	}
-};
-
 const updateUser = async (updatedUser, id) => {
 	try {
 		const user = await User.findByPk(id);
@@ -63,15 +53,15 @@ const deleteUser = async (id) => {
 	}
 };
 
-const validateUser = async (userCredentials) => {
+const getUserByNameAndPassword = async (userCredentials) => {
 	try {
 		const user = await User.findAll({
 			where: {
-				email: userCredentials.user,
-				password: userCredentials.pass,
+				name: userCredentials.name,
+				password: userCredentials.password,
 			},
 		});
-		if (user.length !== 0) {
+		if (user) {
 			return user;
 		}
 		return false;
@@ -84,7 +74,7 @@ const validateUser = async (userCredentials) => {
 module.exports = {
 	createUser,
 	getUsers,
-	getUserById,
+	getUserByNameAndPassword,
 	updateUser,
 	deleteUser,
 };

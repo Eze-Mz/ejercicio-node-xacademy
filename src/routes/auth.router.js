@@ -1,13 +1,14 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { SERVER_SECRET } = require("../middlewares/auth.mdw");
+const userService = require("../services");
 
 const authRouter = express.Router();
 
 //Ruta para manejar el login
 authRouter.post("/", async (req, res) => {
 	// buscar si el usuario existe en la base de datos
-
+	const user = await userService.getUserByNameAndPassword(req.body);
 	// si existe chequear el rol y generar el token con el nombre y el rol
 	const { username, password } = req.body;
 	if (username === "admin" && password === "admin") {

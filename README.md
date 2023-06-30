@@ -1,4 +1,8 @@
 # ejercicio-node-xacademy
+# ¡Me faltan algunas cosas por terminar!
+- el crud de los usuarios
+- es sistema de autenticación y proteger las rutas
+- este readme 
 
 ## API REST para manejar librerías y libros
 
