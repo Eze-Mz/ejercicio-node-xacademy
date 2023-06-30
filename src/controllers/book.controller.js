@@ -2,8 +2,12 @@ const { bookService } = require("../services");
 
 const createBook = async (req, res) => {
 	try {
-		const newBook = await bookService.createBook(req.body);
-		res.json(newBook);
+		const response = await bookService.createBook(req.body);
+		if (typeof response === "string") {
+			res.status(400).json(response);
+		} else {
+			res.json(response);
+		}
 	} catch (error) {
 		res.status(500).json({ action: "createBook", error: error.message });
 	}

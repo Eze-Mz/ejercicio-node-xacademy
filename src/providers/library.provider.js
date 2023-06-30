@@ -1,7 +1,6 @@
 const { Library } = require("../models");
 
 const createLibrary = async (library) => {
-	console.log("FROM PROVIDER!!");
 	try {
 		const newLibrary = await Library.create(library);
 		return newLibrary;
@@ -13,7 +12,7 @@ const createLibrary = async (library) => {
 
 const getLibraries = async () => {
 	try {
-		const libraries = await Library.findAll();
+		const libraries = await Library.findAll({ include: { all: true } });
 		return libraries;
 	} catch (error) {
 		console.error("Error al buscar liberías", error);
@@ -23,7 +22,7 @@ const getLibraries = async () => {
 
 const getLibraryById = async (id) => {
 	try {
-		const library = await Library.findByPk(id);
+		const library = await Library.findByPk(id, { include: { all: true } });
 		return library;
 	} catch (error) {
 		console.error(`Error al buscar libería con id ${id}`, error);

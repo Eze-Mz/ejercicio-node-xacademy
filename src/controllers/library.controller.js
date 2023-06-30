@@ -57,10 +57,27 @@ const deleteLibrary = async (req, res) => {
 	}
 };
 
+const addBookToLibrary = async (req, res) => {
+	try {
+		const response = await libraryService.addBookToLibrary(
+			req.body,
+			req.params.libraryId,
+		);
+		if (typeof response === "string") {
+			res.status(404).json(response);
+		} else {
+			res.json(response);
+		}
+	} catch (error) {
+		res.status(500).json({ action: "addBookToLibrary", error: error.message });
+	}
+};
+
 module.exports = {
 	createLibrary,
 	getLibraries,
 	getLibraryById,
 	updateLibrary,
 	deleteLibrary,
+	addBookToLibrary,
 };

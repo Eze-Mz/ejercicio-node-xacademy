@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../db-config");
+const Book = require("./book.model");
 
 const Library = sequelize.define(
 	"Library",
@@ -29,5 +30,8 @@ const Library = sequelize.define(
 		paranoid: true,
 	},
 );
+
+Library.hasMany(Book);
+Book.belongsTo(Library);
 
 module.exports = Library;

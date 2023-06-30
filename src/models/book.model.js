@@ -25,10 +25,6 @@ const Book = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		library: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-		},
 	},
 	{
 		paranoid: true,
