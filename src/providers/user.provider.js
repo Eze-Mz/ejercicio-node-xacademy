@@ -55,14 +55,14 @@ const deleteUser = async (id) => {
 
 const getUserByNameAndPassword = async (userCredentials) => {
 	try {
-		const user = await User.findAll({
+		const user = await User.findOne({
 			where: {
-				name: userCredentials.name,
+				username: userCredentials.username,
 				password: userCredentials.password,
 			},
 		});
 		if (user) {
-			return user;
+			return user.dataValues;
 		}
 		return false;
 	} catch (err) {

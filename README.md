@@ -1,8 +1,9 @@
 # ejercicio-node-xacademy
-# ¡Me faltan algunas cosas por terminar!
-- el crud de los usuarios
-- es sistema de autenticación y proteger las rutas
-- este readme 
+# Lo que me falta
+- Este readme 
+- Validaciones
+- Revisar el código, ver qué puedo mejorar (ver la coherencia en el manejo de errores por ej.)
+- Revisar si al borrar una librería, los libros que estaban en ella actualizan el id de la librería a null
 
 ## API REST para manejar librerías y libros
 
@@ -11,7 +12,9 @@ Para manejar cada ruta se utiliza un provider que se comunica con la base de dat
 ## Rutas
 (describir  las opciones de la API)
 - /library
-  - /library/:libraryId/book --> Crear un libro en la librería con ese id
+  - GET / --> Ver todas las librerías con sus libros
+  - GET /id --> Ver todas las librerías y sus libros
+  - /library/id/book --> Crear un libro en la librería con ese id
 - /book
 - /user
   Al inicializar el servidor se crean dos usuarios: 
@@ -19,14 +22,12 @@ Para manejar cada ruta se utiliza un provider que se comunica con la base de dat
   password: admin
   name: pepe
   password: pepe
-Para acceder a cualquier dato primero va a ser necesario loggearse. Hay dos roles "USER" y "ADMIN". Algunas rutas van a estar disponibles solo para el rol "ADMIN".
+Para realizar algunas acciones es necesario loggearse. Hay dos roles "USER" y "ADMIN". Algunas rutas van a estar disponibles solo para el rol "ADMIN" (agregar, modificar y eliminar librerías).
 El CRUD de usuarios solo puede ser accedido por el "ADMIN", al principio es uno solo creado al inicio del server (entiendo que dependiendo de para qué se vaya a utilizar la api, sería las decisiones acerca de creación de usuarios ya acceso a las rutas).
+Para loggearse se debe enviar el nombre de usuario y la password en formato json.
 
-## Dudas y tareas
-- ¿Qué opciones hay para actualizar un elemento/una fila? ¿Qué conviene devolver al request al actualizar?
-- Validaciones: del isbn, del teléfono...
-- En general, una vez que todo funciones podría ordenar mucho en cuanto a los errores y a los mensaje que otorga la api a los usuarios.
-  - Por ejemplo, ¿Qué pasa al agregar un libro a una librería que no existe?
+Un comentario: al implementar el loggin se me han ido ocurriendo varias posibilidades distintas, y los posibles casos de uso. Supongo que se trata de encontrar la mejor opción y la más segura de acuerdo a los requerimientos concretos de un proyecto.
+
 
 
 

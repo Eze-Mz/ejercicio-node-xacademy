@@ -3,13 +3,21 @@ const express = require("express");
 const libraryRouter = express.Router();
 
 const { libraryController } = require("../controllers");
-const { authMiddleware } = require("../middlewares/auth.mdw");
+const { userIsAdminMDW } = require("../middlewares/auth.mdw");
 
-libraryRouter.post("/", authMiddleware, libraryController.createLibrary);
+libraryRouter.post("/", userIsAdminMDW, libraryController.createLibrary);
 libraryRouter.post("/:libraryId/book", libraryController.addBookToLibrary);
 libraryRouter.get("/", libraryController.getLibraries);
 libraryRouter.get("/:libraryId", libraryController.getLibraryById);
-libraryRouter.put("/:libraryId", libraryController.updateLibrary);
-libraryRouter.delete("/:libraryId", libraryController.deleteLibrary);
+libraryRouter.put(
+	"/:libraryId",
+	userIsAdminMDW,
+	libraryController.updateLibrary,
+);
+libraryRouter.delete(
+	"/:libraryId",
+	userIsAdminMDW,
+	libraryController.deleteLibrary,
+);
 
 module.exports = libraryRouter;

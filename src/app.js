@@ -1,5 +1,5 @@
 const express = require("express");
-const { initializeDB } = require("./db-config");
+const { initializeDB, createUsersOnStart } = require("./db-config");
 const {
 	bookRouter,
 	libraryRouter,
@@ -23,6 +23,6 @@ app.use("/login", authRouter);
 
 app.listen(PORT, async () => {
 	await initializeDB();
-	User.build({ name: "admin", password: "admin", role: "ADMIN" }).save();
+	await createUsersOnStart();
 	console.log(`server is running on port ${PORT}`);
 });
